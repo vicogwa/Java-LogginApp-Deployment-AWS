@@ -18,7 +18,7 @@ LOG_FILE=~/3tier-deploy.log
 # -----------------------------------------------------------------
 # PROJECT-SPECIFIC CONFIGURATION
 # -----------------------------------------------------------------
-JFROG_USER="vicogwa"
+JFROG_USER="victoria.f@istrategytech.com"
 JFROG_TOKEN="${JFROG_TOKEN}"
 JFROG_BASE_URL="https://vicogwa.jfrog.io/artifactory"
 JFROG_REPO="my-libs-release"
@@ -49,12 +49,12 @@ log "================================================================"
 log "--- [1/10] Waiting for RDS to be Available ---"
 
 aws rds wait db-instance-available \
-  --db-instance-identifier 3tier-mysql \
+  --db-instance-identifier threetier-mysql \
   --region $REGION
 log "RDS is available"
 
 RDS_ENDPOINT=$(aws rds describe-db-instances \
-  --db-instance-identifier 3tier-mysql \
+  --db-instance-identifier threetier-mysql \
   --region $REGION \
   --query 'DBInstances[0].Endpoint.Address' \
   --output text)
@@ -440,7 +440,7 @@ aws cloudwatch put-metric-alarm \
   --period 60 \
   --threshold 100 \
   --comparison-operator GreaterThanThreshold \
-  --dimensions Name=DBInstanceIdentifier,Value=3tier-mysql \
+  --dimensions Name=DBInstanceIdentifier,Value=threetier-mysql \
   --evaluation-periods 2 \
   --alarm-actions $SNS_ARN \
   --ok-actions $SNS_ARN \
@@ -493,7 +493,7 @@ pub_nlb_arn        = "$PUB_NLB_ARN"
 priv_nlb_arn       = "$PRIV_NLB_ARN"
 pub_tg_arn         = "$PUB_TG_ARN"
 priv_tg_arn        = "$PRIV_TG_ARN"
-rds_instance       = "3tier-mysql"
+rds_instance       = "threetier-mysql"
 db_subnet_group    = "3tier-db-subnet-group"
 sns_arn            = "$SNS_ARN"
 log_bucket         = "$LOG_BUCKET"

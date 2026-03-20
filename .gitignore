@@ -1,0 +1,5 @@
+Java-Login-App/settings.xml
+terraform/teardown/.terraform/
+terraform/teardown/terraform.tfstate
+terraform/teardown/terraform.tfstate.backup
+terraform/teardown/terraform.tfvars
