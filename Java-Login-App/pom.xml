@@ -69,7 +69,7 @@
                 <repository>
                         <id>central</id>
                         <name>vicogwa-artifactory-releases</name>
-                        <url>https://vicogwa.jfrog.io/artifactory/my-libs-release</url>
+                        <url>https://vicogwa.jfrog.io/artifactory/my-libs-release-local</url>
                 </repository>
         </distributionManagement>
 </project>
