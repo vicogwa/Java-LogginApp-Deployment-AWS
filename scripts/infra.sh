@@ -431,13 +431,13 @@ log "Bastion Public IP: $BASTION_PUBLIC_IP"
 log "--- [10/11] Creating RDS MySQL Multi-AZ Instance ---"
 
 aws rds create-db-subnet-group \
-  --db-subnet-group-name 3tier-db-subnet-group \
+  --db-subnet-group-name rds-subnet-group \
   --db-subnet-group-description "3-Tier Project RDS Subnet Group" \
   --subnet-ids $APP_PRIV_SUB_1 $APP_PRIV_SUB_2 \
   --region $REGION
 
 aws rds create-db-instance \
-  --db-instance-identifier 3tier-mysql \
+  --db-instance-identifier threetier-mysql \
   --db-instance-class db.t3.micro \
   --engine mysql \
   --engine-version 8.0 \
@@ -445,7 +445,7 @@ aws rds create-db-instance \
   --master-user-password Admin123! \
   --db-name java3tier_db \
   --vpc-security-group-ids $RDS_SG \
-  --db-subnet-group-name 3tier-db-subnet-group \
+  --db-subnet-group-name rds-subnet-group \
   --multi-az \
   --allocated-storage 20 \
   --storage-type gp2 \
