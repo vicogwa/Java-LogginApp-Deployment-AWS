@@ -164,7 +164,7 @@ TOMCAT_BASE=$(aws ec2 run-instances \
 exec > /var/log/user-data.log 2>&1
 
 # Install JDK 11
-amazon-linux-extras install java-openjdk11 -y
+sudo yum install -y java-17-amazon-corretto
 
 # Download Tomcat 9
 wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.tar.gz \
@@ -187,7 +187,7 @@ After=network.target
 Type=forking
 User=tomcat
 Group=tomcat
-Environment="JAVA_HOME=/usr/lib/jvm/java-11-openjdk"
+Environment="JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto"
 Environment="CATALINA_HOME=/opt/tomcat"
 Environment="CATALINA_BASE=/opt/tomcat"
 Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
@@ -272,7 +272,7 @@ exec > /var/log/user-data.log 2>&1
 
 # Install Git and JDK 11
 yum install -y git
-amazon-linux-extras install java-openjdk11 -y
+sudo yum install -y java-17-amazon-corretto
 
 # Install Maven 3.9.6
 wget https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz \
@@ -282,7 +282,7 @@ ln -s /opt/apache-maven-3.9.6 /opt/maven
 
 # Add Maven to system PATH
 cat > /etc/profile.d/maven.sh << EOF
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto
 export M2_HOME=/opt/maven
 export MAVEN_HOME=/opt/maven
 export PATH=\${M2_HOME}/bin:\${PATH}
