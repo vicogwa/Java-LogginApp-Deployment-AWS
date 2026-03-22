@@ -77,7 +77,7 @@ EOF
 
 cd ~/Java-LogginApp-Deployment-AWS/Java-Login-App
 git add src/main/resources/application.properties
-git commit -m "AWS deployment: update RDS endpoint to $RDS_ENDPOINT"
+git commit -m "AWS deployment: update RDS endpoint to $RDS_ENDPOINT" || true || true
 git push origin master
 log "application.properties updated and pushed to GitHub"
 
